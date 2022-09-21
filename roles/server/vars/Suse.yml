@@ -1,0 +1,16 @@
+---
+checkmk_server_setup_file: "check-mk-{{ checkmk_server_edition_mapping[checkmk_server_edition] }}-{{ checkmk_server_version }}-sles{{ ansible_distribution_major_version }}-38.x86_64.rpm"   # noqa yaml[line-length]
+# https://download.checkmk.com/checkmk/2.0.0p4/check-mk-raw-2.0.0p4-sles15sp2-38.x86_64.rpm
+# https://download.checkmk.com/checkmk/2.0.0p4/check-mk-raw-2.0.0p4-sles15-38.x86_64.rpm
+
+checkmk_server_ports:
+  - 80/tcp
+  - 443/tcp
+  - 8000/tcp
+
+checkmk_server_prerequisites_per_distro:
+  SLES:
+    - bash  # Placeholder
+
+checkmk_server_prerequisites: "{{ checkmk_server_prerequisites_per_distro[ansible_facts.distribution ~ '-' ~ ansible_facts.distribution_major_version]
+  | default( checkmk_server_prerequisites_per_distro[ansible_facts.distribution]) }}"
