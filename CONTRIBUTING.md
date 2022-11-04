@@ -69,8 +69,13 @@ in the existing modules when creating additional modules.
 * The first line is a short title (limit to 72 characters or less)
 * Write [good commit messages](https://chris.beams.io/posts/git-commit/)
 
-### Plugins
+### Modules
 Specifics to be done. Stick to general Ansible coding best practices and look out for sanity check gotchas.
+
+#### Module Options
+* If your module only deals with a single class of objects in Checkmk, e.g. the [service_group]() module, keep the module option names as brief as possible. Keep in mind, that module name tells you the context, not the option.
+* If your module interacts with more than one class of objects, it needs to be more specific in the naming of options. For example the [downtime]() module can interact with both hosts and services.
+* If in doubt, create a [pull request](#Pull-Requests) and ask for review. We will try to help you find a good naming.
 
 ### Roles
 The following are guidelines to keep in mind, when changing roles.
